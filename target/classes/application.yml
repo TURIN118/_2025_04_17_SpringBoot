@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: _2025_04_17
+  datasource:
+    username: root
+    password: abc123
+    url: jdbc:mysql://localhost:3306/project_one?allowMultiQueries=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+#pagehelper:
+#  helper-dialect: mysql       # 必填！数据库方言（mysql/oracle/postgresql等）
+#  reasonable: true            # 分页参数合理化（pageNum<=0时返回第一页）
+#  support-methods-arguments: true  # 支持通过接口参数传递分页信息
+#  params: count=countSql      # 优化 COUNT 查询
+#  auto-runtime-dialect: true  # 自动检测运行时数据库类型（多数据源时建议开启）
+
+server:
+  port: 9090
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  configuration:
+#    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-aliases-package: com.wnj._2025_04_17.entity
+#
+logging:
+  level:
+    com.wnj._2025_04_17.mapper: trace  # 打印参数绑定详情
+

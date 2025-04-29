@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wnj._2025_04_17.mapper.UserMapper">
+    <update id="handleBatchResetPwd" parameterType="userEntity">
+        <foreach collection="dto.selectedItems" item="item" separator=";" index="index" close="" open="">
+            update user set pwd = #{dto.newPwd} where id = #{item.id}
+        </foreach>
+    </update>
+
+    <update id="handleBatchToggleStatus" parameterType="userEntity">
+        <foreach collection="dto.selectedItems" item="item" separator=";" index="index" close="" open="">
+            update user set status = #{dto.newStatus} where id = #{item.id}
+        </foreach>
+    </update>
+
+    <delete id="handleBatchDelete" parameterType="userEntity">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            delete from user where id = #{item.id}
+        </foreach>
+    </delete>
+
+    <select id="findAllOrByCondition" parameterType="pageDTO" resultType="userEntity">
+        select * from `user`
+        <where>
+            <if test="username != '' and username != null">
+                username like concat('%',#{username},'%')
+            </if>
+            <if test="status != null and status != ''">
+                and status = #{status}
+            </if>
+        </where>
+    </select>
+</mapper>

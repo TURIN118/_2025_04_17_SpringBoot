@@ -1,0 +1,114 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "API Documentation",
+    "version" : "1.0"
+  },
+  "paths" : {
+    "/user/get" : {
+      "get" : {
+        "summary" : "getUsers",
+        "description" : "getUsers",
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "object",
+                    "properties" : {
+                      "username" : {
+                        "type" : "string",
+                        "description" : ""
+                      },
+                      "id" : {
+                        "type" : "integer",
+                        "description" : ""
+                      },
+                      "pwd" : {
+                        "type" : "string",
+                        "description" : ""
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/add" : {
+      "post" : {
+        "summary" : "addUser",
+        "description" : "addUser",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "username" : {
+                    "type" : "string",
+                    "description" : ""
+                  },
+                  "id" : {
+                    "type" : "integer",
+                    "description" : ""
+                  },
+                  "pwd" : {
+                    "type" : "string",
+                    "description" : ""
+                  }
+                },
+                "description" : ""
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/delete" : {
+      "delete" : {
+        "summary" : "delUser",
+        "description" : "delUser",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : { }
+}
