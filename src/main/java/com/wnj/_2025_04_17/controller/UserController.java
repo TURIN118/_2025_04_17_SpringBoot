@@ -55,7 +55,7 @@ public class UserController {
     * 登录接口
     * */
     @PostMapping(value = "/login")
-    public boolean login(@RequestBody UserEntity user) {
+    public Result login(@RequestBody UserEntity user) {
         return userService.login(user);
     }
     /*

@@ -46,19 +46,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean login(UserEntity user) {
+    public Result login(UserEntity user) {
         List<UserEntity> login = userMapper.login(user);
         if (login != null && login.size() > 0) {
             if (login.get(0).getPwd().equals(user.getPwd())) {
-                log.info(login.toString());
-                return true;
+                return new Result(200, new UserEntity(
+                        login.get(0).getUsername(),
+                        login.get(0).getId(),
+                        null,
+                        login.get(0).getStatus()),
+                        "登录成功");
             } else {
-                log.info(login.toString());
-                return false;
+                return new Result(500, null, "账号或密码错误！");
             }
         } else {
-            log.info(login.toString());
-            return false;
+            return new Result(500, null, "用户不存在！");
         }
     }
 
@@ -94,9 +96,10 @@ public class UserServiceImpl implements UserService {
         Integer i = userMapper.handleBatchToggleStatus(batchResetPwdDTO);
         return new Result(200, i, "批量更新状态成功!");
     }
+
     /*
-    * 删除单个用户
-    * */
+     * 删除单个用户
+     * */
     @Override
     public Result deleteSimpleUser(UserEntity user) {
         Integer i = userMapper.deleteSimpleUser(user);

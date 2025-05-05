@@ -13,7 +13,7 @@ public interface UserMapper {
 
     List<UserEntity> findAllOrByCondition(PageDTO pageDTO);
 
-    @Insert("insert into user values(#{user.username},#{user.id},#{user.pwd})")
+    @Insert("insert into user (username, pwd, status) values(#{user.username},#{user.pwd},#{user.status})")
     @Options(keyProperty="user.id",useGeneratedKeys=true)
     Integer addUser(@Param("user")UserEntity user);
 

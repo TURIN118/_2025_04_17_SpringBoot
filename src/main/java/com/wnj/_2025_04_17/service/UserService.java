@@ -17,7 +17,7 @@ public interface UserService {
 
     Integer updateUser(UserEntity user);
 
-    boolean login(UserEntity user);
+    Result login(UserEntity user);
 
     List<UserEntity> findByCondition(UserEntity user);
 
