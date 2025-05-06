@@ -1,5 +1,6 @@
 package com.wnj._2025_04_17.controller;
 
+import com.wnj._2025_04_17.entity.PageDTO;
 import com.wnj._2025_04_17.entity.PayOrderEntity;
 import com.wnj._2025_04_17.entity.Result;
 import com.wnj._2025_04_17.service.PayService;
@@ -16,9 +17,9 @@ public class PayController {
     /*
     * 获取后台所有订单
     * */
-    @GetMapping(value = "/getPayAllInfo")
-    public Result getPayAllInfo() {
-        return payService.getPayAllInfo();
+    @PostMapping(value = "/getPayAllInfo")
+    public Result getPayAllInfo(@RequestBody PageDTO pageDTO) {
+        return payService.getPayAllInfo(pageDTO);
     }
 
     /*

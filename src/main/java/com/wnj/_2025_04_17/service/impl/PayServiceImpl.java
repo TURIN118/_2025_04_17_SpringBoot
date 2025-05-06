@@ -1,5 +1,8 @@
 package com.wnj._2025_04_17.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.wnj._2025_04_17.entity.PageDTO;
 import com.wnj._2025_04_17.entity.PayOrderEntity;
 import com.wnj._2025_04_17.entity.Result;
 import com.wnj._2025_04_17.mapper.PayMapper;
@@ -17,9 +20,12 @@ public class PayServiceImpl implements PayService {
     private PayMapper payMapper;
 
     @Override
-    public Result getPayAllInfo() {
-        List<PayOrderEntity> payOrderEntities =  payMapper.getPayAllInfo();
-        return new Result(200,payOrderEntities,"查询成功!");
+    public Result getPayAllInfo(PageDTO pageDTO) {
+        PageHelper.startPage(pageDTO.getCurrentPage(), pageDTO.getPageSize());
+        pageDTO.setUsername(pageDTO.getUsername().trim());
+        List<PayOrderEntity> payOrderEntities =  payMapper.getPayAllInfo(pageDTO);
+        PageInfo<PayOrderEntity> payOrderEntityPageInfo = new PageInfo<>(payOrderEntities);
+        return new Result(200,payOrderEntityPageInfo,"数据查询成功!");
     }
 
     @Override

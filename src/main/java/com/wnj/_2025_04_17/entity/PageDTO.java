@@ -23,23 +23,31 @@ import lombok.ToString;
 @ToString
 public class PageDTO {
     /*
-    * 用户名称
-    * */
+     * 用户名称
+     * */
     private String username;
     /*
-    * 用户状态
-    * */
+     * 用户状态
+     * */
     private String status;
     /*
-    * 当前页面码
-    * */
+     * 当前页面码
+     * */
     private Integer currentPage;
     /*
-    * 总条数
-    * */
+     * 总条数
+     * */
     private Integer total;
     /*
-    * 每页的数量
-    * */
+     * 每页的数量
+     * */
     private Integer pageSize;
+    /*
+     * 订单Id
+     * */
+    private String orderId;
+    /*
+     * 订单状态
+     * */
+    private String orderStatus;
 }
